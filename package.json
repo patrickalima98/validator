@@ -1,0 +1,15 @@
+{
+  "name": "@acai/validator",
+  "version": "0.1.0",
+  "description": "A customizable validator for the Açaí framework",
+  "repository": "https://github.com/AcaiFramework/validator.git",
+  "author": "Rafael <rafael.chaves98@hotmail.com>",
+  "license": "BSD-3-Clause",
+  "private": false,
+  "scripts": {
+	  "test": "deno run --import-map=package.json -A --unstable test.ts"
+  },
+  "imports": {
+    "test/": "https://deno.land/x/acai_testing@1.0.9/"
+  }
+}

@@ -2,7 +2,7 @@
 import test from "test/mod.ts";
 
 // Modules
-import Validator from "../../modules/validator.ts";
+import Validator from "../../../modules/validator.ts";
 
 // Rules
 import rule from "./index.ts";
@@ -11,25 +11,25 @@ import rule from "./index.ts";
 class TestValidator extends Validator {
 	protected getSchema() {
 		return {
-			field: ["required"]
+			field: ["number"]
 		};
 	}
 
 	public get rules () {
 		return {
-			required: rule,
+			number: rule,
 		};
 	}
 }
 
-test.group("Required rule tests", () => {
+test.group("Number rule tests", () => {
 	// -------------------------------------------------
 	// Validator tests
 	// -------------------------------------------------
 
 	test("Get rule from validator", (expect) => {
 		const validator = new TestValidator({field: 1});
-		const required 	= validator.rules.required;
+		const required 	= validator.rules.number;
 
 		expect(required).toBeDefined();
 		expect(required.onError).toBeDefined();
@@ -41,19 +41,18 @@ test.group("Required rule tests", () => {
 	// -------------------------------------------------
 
 	test("Test success rule through validator", (expect) => {
-		const validator = new TestValidator({field: 1});
+		const validator = new TestValidator({field: 4});
 
-		expect(validator.errors).toBeDefined();
-		expect(validator.validated.field).toBe(1);
-		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBeUndefined();
+		expect(validator.errors).toBeUndefined();
+		expect(validator.validated.field).toBe(4);
 	});
 
-	test("Test fail rule through validator", (expect) => {
-		const validator = new TestValidator({field: undefined});
+	test("Test fail rule through validator (non strict)", (expect) => {
+		const validator = new TestValidator({field: "hi"});
 
 		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBeUndefined();
-		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is required"]);
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is not a number"]);
 	});
 
 	// -------------------------------------------------
@@ -61,20 +60,20 @@ test.group("Required rule tests", () => {
 	// -------------------------------------------------
 
 	test("Test success rule directly", (expect) => {
-		const result = rule.onValidate && rule.onValidate("true", "field", {});
+		const result = rule.onValidate && rule.onValidate(2, "field", {});
 
 		expect(result).toBe(true);
 	});
 
 	test("Test fail rule directly", (expect) => {
-		const result = rule.onValidate && rule.onValidate(undefined, "field", {});
+		const result = rule.onValidate && rule.onValidate("number", "field", {});
 
 		expect(result).toBe(false);
 	});
 
 	test("Test fail rule message directly", (expect) => {
-		const result = rule.onError && rule.onError(undefined, "field", {});
+		const result = rule.onError && rule.onError("number", "field", {});
 
-		expect(result).toBe("field field is required");
+		expect(result).toBe("field field is not a number");
 	});
 }).tag(["validator"]);

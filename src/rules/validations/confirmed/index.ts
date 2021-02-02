@@ -1,5 +1,5 @@
 // Interfaces
-import RuleInterface from "../../interfaces/rule.ts";
+import RuleInterface from "../../../interfaces/rule.ts";
 
 const rule = {
 	// callbacks

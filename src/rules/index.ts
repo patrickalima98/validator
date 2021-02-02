@@ -1,12 +1,13 @@
 // Interfaces
 import RuleInterface from "../interfaces/rule.ts";
 
-// Rules
-import arrayRule 		from "./array/index.ts";
-import confirmedRule 	from "./array/index.ts";
-import emailRule 		from "./array/index.ts";
-import objectRule 		from "./array/index.ts";
-import requiredRule 	from "./array/index.ts";
+// Validation ules
+import arrayRule 		from "./validations/array/index.ts";
+import confirmedRule 	from "./validations/confirmed/index.ts";
+import emailRule 		from "./validations/email/index.ts";
+import objectRule 		from "./validations/object/index.ts";
+import requiredRule 	from "./validations/required/index.ts";
+import stringRule 		from "./validations/string/index.ts";
 
 // list
 let ruleList: Record<string, RuleInterface> = {
@@ -15,6 +16,7 @@ let ruleList: Record<string, RuleInterface> = {
 	"email"		: emailRule,
 	"object"	: objectRule,
 	"required"	: requiredRule,
+	"string"	: stringRule,
 };
 
 // methods

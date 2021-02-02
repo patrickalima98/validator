@@ -1,6 +1,9 @@
 // Interfaces
 import RuleInterface from "../interfaces/rule.ts";
 
+// Rules
+import ruleList from "../rules/index.ts";
+
 export default class Validator {
 	// -------------------------------------------------
 	// Properties
@@ -81,7 +84,7 @@ export default class Validator {
 	// -------------------------------------------------
 
 	public get rules (): Record<string, RuleInterface> {
-		return {};
+		return ruleList();
 	}
 
 	public get validated () {

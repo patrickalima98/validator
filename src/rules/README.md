@@ -10,10 +10,10 @@ Verifies if the field is an object
 ### [x] string
 Verifies if the field is a string
 
-### [ ] number
+### [x] number
 Verifies if the field is a number. Has an argument to stricly accept only types of number, but not convertable ones.
 
-### [ ] truthy
+### [x] truthy
 Verifies if the field is equivalent to truth
 
 ### [ ] falsy

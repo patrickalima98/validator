@@ -43,15 +43,17 @@ test.group("Email rule tests", () => {
 	test("Test success rule through validator", (expect) => {
 		const validator = new TestValidator({field: "john@doe.com"});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBe("john@doe.com");
-		expect(validator.errors.errors.field).toBeUndefined();
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBeUndefined();
 	});
 
 	test("Test fail rule through validator", (expect) => {
 		const validator = new TestValidator({field: "not.an.email"});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBeUndefined();
-		expect(validator.errors.errors.field).toBe(["field field is not an email"]);
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is not an email"]);
 	});
 
 	// -------------------------------------------------

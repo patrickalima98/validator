@@ -43,15 +43,17 @@ test.group("Confirmation rule tests", () => {
 	test("Test success rule through validator", (expect) => {
 		const validator = new TestValidator({field: "test", field_confirmation: "test"});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBe(["one", "two"]);
-		expect(validator.errors.errors.field).toBeUndefined();
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBeUndefined();
 	});
 
 	test("Test fail rule through validator", (expect) => {
 		const validator = new TestValidator({field: "not.confirmed"});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBeUndefined();
-		expect(validator.errors.errors.field).toBe(["field field is not confirmed"]);
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is not confirmed"]);
 	});
 
 	// -------------------------------------------------

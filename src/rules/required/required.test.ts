@@ -43,15 +43,17 @@ test.group("Required rule tests", () => {
 	test("Test success rule through validator", (expect) => {
 		const validator = new TestValidator({field: 1});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBe(1);
-		expect(validator.errors.errors.field).toBeUndefined();
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBeUndefined();
 	});
 
 	test("Test fail rule through validator", (expect) => {
 		const validator = new TestValidator({field: undefined});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBeUndefined();
-		expect(validator.errors.errors.field).toBe(["field field is required"]);
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is required"]);
 	});
 
 	// -------------------------------------------------

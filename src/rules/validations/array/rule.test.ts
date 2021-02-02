@@ -76,4 +76,4 @@ test.group("Array rule tests", () => {
 
 		expect(result).toBe("field field is not an array");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "array"]);

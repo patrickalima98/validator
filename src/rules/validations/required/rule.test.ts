@@ -76,4 +76,4 @@ test.group("Required rule tests", () => {
 
 		expect(result).toBe("field field is required");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "required"]);

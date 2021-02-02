@@ -76,4 +76,4 @@ test.group("Truthy rule tests", () => {
 
 		expect(result).toBe("field field is not truthy");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "truthy"]);

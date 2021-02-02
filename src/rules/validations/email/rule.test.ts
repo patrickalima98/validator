@@ -76,4 +76,4 @@ test.group("Email rule tests", () => {
 
 		expect(result).toBe("field field is not an email");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "email"]);

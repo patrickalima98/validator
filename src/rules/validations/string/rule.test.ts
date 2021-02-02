@@ -76,4 +76,4 @@ test.group("String rule tests", () => {
 
 		expect(result).toBe("field field is not a string");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "string"]);

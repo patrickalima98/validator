@@ -76,4 +76,4 @@ test.group("Object rule tests", () => {
 
 		expect(result).toBe("field field is not an object");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "object"]);

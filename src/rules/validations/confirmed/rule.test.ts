@@ -76,4 +76,4 @@ test.group("Confirmation rule tests", () => {
 
 		expect(result).toBe("field field is not confirmed");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "confirmed"]);

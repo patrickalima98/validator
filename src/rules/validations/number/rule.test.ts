@@ -76,4 +76,4 @@ test.group("Number rule tests", () => {
 
 		expect(result).toBe("field field is not a number");
 	});
-}).tag(["validator"]);
+}).tag(["rule", "number"]);

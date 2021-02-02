@@ -74,6 +74,8 @@ export default class Validator {
 	}
 
 	protected printErrors () {
+		if (Object.keys(this._errors).length === 0) return undefined;
+
 		return {
 			errors: this._errors,
 		}

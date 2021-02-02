@@ -43,15 +43,17 @@ test.group("Object rule tests", () => {
 	test("Test success rule through validator", (expect) => {
 		const validator = new TestValidator({field: {first: true}});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBe({first: true});
-		expect(validator.errors.errors.field).toBeUndefined();
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBeUndefined();
 	});
 
 	test("Test fail rule through validator", (expect) => {
 		const validator = new TestValidator({field: "not.an.object"});
 
+		expect(validator.errors).toBeDefined();
 		expect(validator.validated.field).toBeUndefined();
-		expect(validator.errors.errors.field).toBe(["field field is not an object"]);
+		expect((validator.errors as {errors: Record<string, string[]>}).errors.field).toBe(["field field is not an object"]);
 	});
 
 	// -------------------------------------------------

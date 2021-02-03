@@ -9,6 +9,10 @@ export default class Validator {
 	// Properties
 	// -------------------------------------------------
 
+	// overwritable
+	public throwable = true;
+
+	// internal
 	protected _fields	: Record<string, unknown>;
 	protected _validated: Record<string, unknown> 	= {};
 	protected _errors	: Record<string, string[]> 	= {};
@@ -63,6 +67,14 @@ export default class Validator {
 
 			if (passes && !this._validated[fieldName]) this._validated[fieldName] = fieldValue;
 		});
+
+		// check if should throw
+		if (this.throwable && Object.keys(this._errors).length > 0) {
+			const error = new Error(this.printErrors() as unknown as string) as Error & {type: string};
+			error.type 	= "validation";
+
+			throw error;
+		}
 	}
 
 	// -------------------------------------------------
